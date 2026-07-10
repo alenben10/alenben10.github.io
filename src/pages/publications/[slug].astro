@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
 import profile from "../../lib/profile";
 import { collection } from "../../lib/content";
 
@@ -48,29 +49,22 @@ const hasFigure = entry.status === "Published" && Boolean(entry.figureImage);
 const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
 ---
 
-<BaseLayout title={`${entry.title} | ${profile.fullName}`} description={entry.summary ?? profile.researchFocus}>
-  <header class="site-header site-header-nav-only detail-header">
-    <nav class="nav" aria-label="Publication navigation">
-      <a href="/">Home</a>
-      <a href="/#publications">Publications</a>
-      <a href="/#notes">Notes</a>
-      <a href="/#contact">Contact</a>
-    </nav>
-  </header>
+<BaseLayout title={`${entry.tabLabel ?? entry.title} | ${profile.fullName}`} description={entry.summary ?? profile.researchFocus}>
+  <SiteHeader variant="detail" />
 
-  <main class="detail-page">
+  <main id="main-content" class="detail-page">
     <section class="section-shell paper-detail-hero">
       <div class="detail-copy">
         <p class="section-kicker">Paper notes</p>
         <h1>{entry.title}</h1>
         {entry.authors ? <p class="detail-authors">{entry.authors}</p> : null}
-        <div class="paper-note-meta" aria-label="Paper note metadata">
+        <div class="paper-note-meta" role="group" aria-label="Paper note metadata">
           <span>
             <strong>Time to read</strong>
             {readTime}
           </span>
           <span>
-            <strong>Publication date</strong>
+            <strong>{entry.status === "Published" ? "Publication year" : "Year"}</strong>
             {entry.date}
           </span>
           <span>
@@ -84,7 +78,11 @@ const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
         </div>
         {entry.summary ? <p class="intro detail-intro">{entry.summary}</p> : null}
         <div class="hero-actions">
-          {entry.href ? <a class="button button-primary" href={entry.href}>Official publication page</a> : null}
+          {entry.href ? (
+            <a class="button button-primary" href={entry.href}>
+              {entry.status === "Published" ? "View published paper" : "Visit journal website"}
+            </a>
+          ) : null}
           {entry.repositoryHref ? <a class="button button-secondary" href={entry.repositoryHref}>Companion repository</a> : null}
         </div>
       </div>
@@ -92,15 +90,17 @@ const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
 
     <section class="section-shell detail-grid" aria-labelledby="paper-summary-title">
       <article class="detail-prose">
-        <p class="section-kicker">Readable notes</p>
-        <h2 id="paper-summary-title">Reading guide</h2>
+        <p class="section-kicker">Paper overview</p>
+        <h2 id="paper-summary-title">Research notes</h2>
         {
           hasFigure ? (
             <figure class="paper-note-figure">
               <img
                 src={entry.figureImage}
                 alt={entry.figureAlt ?? entry.title}
-                loading="eager"
+                width={entry.figureWidth}
+                height={entry.figureHeight}
+                loading="lazy"
                 decoding="async"
               />
               {(entry.figureCaption || entry.figureSource) ? (
@@ -116,7 +116,7 @@ const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
       </article>
       <aside class="detail-aside" aria-label="Publication metadata">
         <div>
-          <p class="card-meta">Description written</p>
+          <p class="card-meta">Notes written</p>
           <strong>{noteDate}</strong>
         </div>
         <div>
@@ -131,7 +131,7 @@ const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
           paperTags.length ? (
             <div class="paper-topic-box">
               <p class="card-meta">Topics</p>
-              <ul class="formal-tag-list" aria-label="Paper topics">
+              <ul class="formal-tag-list">
                 {paperTags.map((tag) => (
                   <li>{tag}</li>
                 ))}

@@ -10,7 +10,9 @@ href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0320227
 summary: "A low-cost electrochemical sensing approach for detecting lead and copper ions using silver nanoparticles stabilized on FTO."
 dateWritten: "April 25, 2026"
 readingTime: "2 min read"
-figureImage: "/assets/publications/electrochemical-sensor-fig1.png"
+figureImage: "/assets/publications/electrochemical-sensor-fig1.webp"
+figureWidth: 1600
+figureHeight: 1165
 figureAlt: "Main figure from the PLOS ONE electrochemical sensor paper."
 figureCaption: "Main figure from the PLOS ONE article, showing the electrode preparation and sensing workflow for Pb(II) and Cu(II) detection."
 figureSource: "https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0320227.g001"

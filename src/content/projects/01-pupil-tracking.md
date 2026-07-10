@@ -1,5 +1,5 @@
 ---
-title: "PupilTrackingDiagnosis"
+title: "Eye Movement Feature Tracking"
 subtitle: "Computer vision for saccadic eye movement analysis"
 date: "Jun 2024"
 order: 2

@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
 import profile from "../../lib/profile";
 import { collection } from "../../lib/content";
 
 export function getStaticPaths() {
-  const notes = collection(import.meta.glob("../../content/notes/*.md", { eager: true }));
+  const notes = collection(
+    import.meta.glob("../../content/notes/*.md", { eager: true }),
+  ).filter((entry) => !entry.draft);
 
   return notes.map((entry) => ({
     params: { slug: entry.slug },
@@ -17,16 +20,9 @@ const EntryContent = entry.Component;
 ---
 
 <BaseLayout title={`${entry.title} | ${profile.fullName}`} description={entry.summary ?? profile.researchFocus}>
-  <header class="site-header site-header-nav-only detail-header">
-    <nav class="nav" aria-label="Note navigation">
-      <a href="/">Home</a>
-      <a href="/#notes">Notes</a>
-      <a href="/#publications">Publications</a>
-      <a href="/#contact">Contact</a>
-    </nav>
-  </header>
+  <SiteHeader variant="detail" />
 
-  <main class="detail-page note-detail">
+  <main id="main-content" class="detail-page note-detail">
     <section class="section-shell note-hero">
       <p class="section-kicker">{entry.date}</p>
       <h1>{entry.title}</h1>
