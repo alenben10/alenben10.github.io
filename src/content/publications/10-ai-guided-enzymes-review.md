@@ -3,6 +3,7 @@ title: "AI-guided characterization of plant enzymes and metabolic pathways"
 tabLabel: "Plant enzymes"
 date: "2026"
 status: "Forthcoming review"
+publicationType: "review"
 order: 7
 authors: "A. Zimic-Sheen and Moghe G."
 journal: "Phytochemistry Reviews"

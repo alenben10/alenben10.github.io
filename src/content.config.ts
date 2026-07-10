@@ -7,6 +7,7 @@ const portfolioSchema = z.object({
   date: z.string().optional(),
   draft: z.boolean().optional(),
   status: z.string().optional(),
+  publicationType: z.enum(["article", "review"]).optional(),
   href: z.string().url().optional(),
   repositoryHref: z.string().url().optional(),
   authors: z.string().optional(),

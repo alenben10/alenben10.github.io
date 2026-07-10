@@ -5,6 +5,7 @@ export type EntryFrontmatter = {
   date?: string;
   draft?: boolean;
   status?: string;
+  publicationType?: "article" | "review";
   href?: string;
   repositoryHref?: string;
   authors?: string;
