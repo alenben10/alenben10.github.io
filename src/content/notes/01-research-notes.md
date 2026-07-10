@@ -1,6 +1,7 @@
 ---
 title: "Notes"
 date: "April 2026"
+draft: true
 order: 1
 summary: "A quiet space for short reflections, paper notes, project updates, and ideas that are not ready to become formal pages."
 dateWritten: "April 25, 2026"

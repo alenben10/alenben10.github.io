@@ -3,6 +3,7 @@ export type EntryFrontmatter = {
   tabLabel?: string;
   subtitle?: string;
   date?: string;
+  draft?: boolean;
   status?: string;
   href?: string;
   repositoryHref?: string;
@@ -12,6 +13,8 @@ export type EntryFrontmatter = {
   dateWritten?: string;
   readingTime?: string;
   figureImage?: string;
+  figureWidth?: number;
+  figureHeight?: number;
   figureAlt?: string;
   figureCaption?: string;
   figureSource?: string;

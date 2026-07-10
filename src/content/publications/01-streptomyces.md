@@ -10,7 +10,9 @@ href: "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.300
 summary: "A strain-level view of drought-enriched Streptomyces in sorghum roots, showing that enrichment and plant-growth benefit do not map cleanly onto the genus as a whole."
 dateWritten: "April 25, 2026"
 readingTime: "3 min read"
-figureImage: "/assets/publications/streptomyces-fig1.png"
+figureImage: "/assets/publications/streptomyces-fig1.webp"
+figureWidth: 1600
+figureHeight: 1233
 figureAlt: "Main figure from the PLOS Biology Streptomyces drought-enrichment paper."
 figureCaption: "Main figure from the PLOS Biology article, summarizing the field, isolate, genomic, and plant-assay workflow used to connect drought enrichment with strain-level function."
 figureSource: "https://journals.plos.org/plosbiology/article/figure?id=10.1371/journal.pbio.3003526.g001"

@@ -9,7 +9,8 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, profile.siteUrl).toString();
-const imageUrl = new URL(profile.portraitImage, profile.siteUrl).toString();
+const portraitUrl = new URL(profile.portraitImage, profile.siteUrl).toString();
+const socialImageUrl = new URL("/og.png", profile.siteUrl).toString();
 const nameKeywords = [profile.fullName, ...profile.alternateNames].join(", ");
 const structuredData = {
   "@context": "https://schema.org",
@@ -23,7 +24,7 @@ const structuredData = {
       additionalName: "Zimic Sheen",
       alternateName: profile.alternateNames,
       url: profile.siteUrl,
-      image: imageUrl,
+      image: portraitUrl,
       email: `mailto:${profile.email}`,
       jobTitle: "Laboratory Technician",
       sameAs: [profile.githubUrl, profile.linkedInUrl],
@@ -39,8 +40,10 @@ const structuredData = {
       ],
       knowsAbout: [
         "Computational biology",
-        "Plant science",
         "Bioinformatics",
+        "Biological data science",
+        "Machine learning",
+        "Omics data analysis",
         "Plant-microbe interactions",
         "Environmental biotechnology",
       ],
@@ -68,25 +71,30 @@ const structuredData = {
     <meta name="author" content={profile.fullName} />
     <meta
       name="keywords"
-      content={`${nameKeywords}, computational biology, plant science, bioinformatics, Cornell University`}
+      content={`${nameKeywords}, computational biology, bioinformatics, biological data science, Cornell University`}
     />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080b10" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${profile.fullName} — Computational biology for complex systems.`} />
     <meta property="og:site_name" content={`${profile.fullName} portfolio`} />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={`${profile.fullName} — Computational biology for complex systems.`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

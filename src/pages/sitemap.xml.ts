@@ -15,7 +15,9 @@ export async function GET() {
   const publications = collection(
     import.meta.glob("../content/publications/*.md", { eager: true }),
   ).filter((entry) => entry.status !== "To be submitted");
-  const notes = collection(import.meta.glob("../content/notes/*.md", { eager: true }));
+  const notes = collection(
+    import.meta.glob("../content/notes/*.md", { eager: true }),
+  ).filter((entry) => !entry.draft);
   const paths = [
     "/",
     ...publications.map((entry) => `/publications/${entry.slug}/`),
