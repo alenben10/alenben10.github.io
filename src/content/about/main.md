@@ -3,8 +3,8 @@ title: "About"
 order: 1
 ---
 
-<p>I'm an incoming PhD student in computational biology at Cornell University, beginning in August 2026 with support from the SUNY Fellowship. I use computation to turn complex biological data and scientific literature into structured, testable hypotheses.</p>
+<p>I am from Peru and hold a B.Sc. in Environmental Engineering from Universidad Peruana Cayetano Heredia. My research experience includes bioinformatics, computational biology, environmental biotechnology, and molecular biology.</p>
 
-I come from Peru, where my first research experiences grew from field-facing questions about agriculture, soil microbes, environmental biotechnology, and public health. That background still shapes how I think about computational biology: useful tools should stay connected to biological systems, local context, and the people who work with them.
+In the Moghe Lab at Cornell University, I work on computational methods for literature mining and gene-function research. Earlier projects in Peru and at UC Berkeley/USDA included metagenomics, protein modeling, immunoinformatics, plant–microbe interactions, and synthetic biology.
 
-In the Moghe Lab at Cornell, I work on data mining approaches for plant metabolites and gene-function discovery. Before that, I worked across plant-microbe systems, environmental biotechnology, metagenomics, protein modeling, and synthetic biology projects in Peru and at UC Berkeley/USDA.
+In August 2026, I will begin a PhD in Computational Biology at Cornell University with support from the SUNY Fellowship.

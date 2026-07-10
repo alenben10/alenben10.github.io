@@ -1,15 +1,16 @@
 ---
-title: "Reimagining plant science training in the era of generative AI: a global perspective"
+title: "Reimagining plant science training in the era of generative artificial intelligence: a global perspective"
 tabLabel: "Plant AI training"
 date: "2026"
-status: "Forthcoming review"
+status: "Published"
+publicationType: "review"
 order: 6
-authors: "Moghe G., A. Zimic-Sheen, et al."
+authors: "Moghe G. D., A. Zimić-Sheen, et al."
 journal: "The Plant Cell"
-href: "https://academic.oup.com/plcell"
+href: "https://academic.oup.com/plcell/article/38/6/koag140/8676660"
 repositoryHref: "https://github.com/moghelab/plant-ai-training"
-summary: "A global-perspective review on how plant science training can adapt to generative AI, paired with a practical tool repository for plant scientists."
-dateWritten: "April 25, 2026"
+summary: "A global perspective on six priorities for AI-literate plant science training, including critical evaluation, reproducibility, ethics, and equitable access."
+dateWritten: "July 10, 2026"
 readingTime: "3 min read"
 visual: "ai-training"
 tags: ["Plant science training", "Generative AI", "Tool repository"]
@@ -17,7 +18,7 @@ tags: ["Plant science training", "Generative AI", "Tool repository"]
 
 ## Summary
 
-This review asks how plant science education and research training should change as generative AI becomes part of everyday scientific work. It is framed as a global perspective, with attention to both opportunity and uneven access.
+Published in *The Plant Cell* (Volume 38, Issue 6; koag140), this perspective examines how plant science education and research training should respond to generative artificial intelligence, with attention to disciplinary foundations, critical use, and unequal access.
 
 ## Key themes
 
