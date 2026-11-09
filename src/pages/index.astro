@@ -21,10 +21,11 @@ const education = collection(import.meta.glob("../content/education/*.md", { eag
 const experience = collection(import.meta.glob("../content/experience/*.md", { eager: true }));
 const publications = collection(import.meta.glob("../content/publications/*.md", { eager: true }));
 const projects = collection(import.meta.glob("../content/projects/*.md", { eager: true }));
+const featuredProjects = projects.filter((entry) => !entry.tags?.includes("earlier"));
+const earlierProjects = projects.filter((entry) => entry.tags?.includes("earlier"));
 const honors = collection(import.meta.glob("../content/honors/*.md", { eager: true }));
 const talks = collection(import.meta.glob("../content/talks/*.md", { eager: true }));
 const service = collection(import.meta.glob("../content/service/*.md", { eager: true }));
-const beyond = collection(import.meta.glob("../content/beyond/*.md", { eager: true }));
 
 const groupedPublications = publicationGroups
   .map((group) => ({
@@ -36,7 +37,7 @@ const publishedCount = publications.filter((entry) =>
   ["peer-reviewed", "proceedings"].includes(entry.category ?? ""),
 ).length;
 
-const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from your website")}`;
+const mailto = `mailto:${profile.email}`;
 ---
 
 <BaseLayout
@@ -49,7 +50,6 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
     <!-- ───────── Hero ───────── -->
     <section class="hero shell" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="hero-greeting" lang="es">{profile.greeting}</p>
         <h1 id="hero-title">{profile.fullName}</h1>
         <p class="hero-role">
           <span>{profile.role}</span>
@@ -71,11 +71,6 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
             <Icon name="linkedin" size={19} />
           </a>
         </div>
-        <p class="hero-route" aria-label="From Lima, Peru to Ithaca, New York">
-          <span>Lima, Peru</span>
-          <span class="route-line" aria-hidden="true"></span>
-          <span>Ithaca, NY</span>
-        </p>
       </div>
       <figure class="hero-portrait">
         <AndeanBand id="band-portrait" class="portrait-weave" height="100%" />
@@ -93,22 +88,18 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
 
     <!-- ───────── About ───────── -->
     <section id="about" class="section shell" aria-labelledby="about-title">
-      <SectionHeading id="about-title" number="01" title="About" es="sobre mí" />
+      <SectionHeading id="about-title" number="01" title="About" es="perfil" />
       <div class="about-grid">
-        <div class="prose">
-          <AboutContent />
+        <div>
+          <div class="prose">
+            <AboutContent />
+          </div>
+          <h3 class="interests-title" id="research">Research interests</h3>
+          <ul class="tags tags-lg">
+            {profile.researchInterests.map((interest) => <li>{interest}</li>)}
+          </ul>
         </div>
-        <aside class="about-aside" aria-label="Quick facts and education">
-          <dl class="facts">
-            {
-              profile.quickFacts.map((fact) => (
-                <div>
-                  <dt>{fact.label}</dt>
-                  <dd>{fact.value}</dd>
-                </div>
-              ))
-            }
-          </dl>
+        <aside class="about-aside" aria-label="Education">
           <h3 class="aside-title">Education</h3>
           <ul class="edu-list">
             {
@@ -126,32 +117,9 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
       </div>
     </section>
 
-    <!-- ───────── Research ───────── -->
-    <section id="research" class="section shell" aria-labelledby="research-title">
-      <SectionHeading id="research-title" number="02" title="Research interests" es="investigación" />
-      <ol class="interest-grid">
-        {
-          profile.researchInterests.map((interest, index) => (
-            <li class="interest-card">
-              <span class="interest-index" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3>{interest.title}</h3>
-              <p>{interest.body}</p>
-              <ul class="tags">
-                {interest.keywords.map((keyword) => (
-                  <li>{keyword}</li>
-                ))}
-              </ul>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
     <!-- ───────── Publications ───────── -->
     <section id="publications" class="section shell" aria-labelledby="publications-title">
-      <SectionHeading id="publications-title" number="03" title="Publications" es="publicaciones">
+      <SectionHeading id="publications-title" number="02" title="Publications" es="publicaciones">
         <p class="section-aside">
           {publishedCount} published · <a href={profile.cvUrl}>full list in CV</a>
         </p>
@@ -166,35 +134,38 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
             <ol class="pub-list">
               {group.entries.map((entry) => (
                 <li class="pub">
-                  <span class="pub-year">
-                    {group.key === "in-preparation" ? "—" : entry.date}
-                  </span>
-                  <div class="pub-body">
-                    {hasNotesPage(entry) ? (
-                      <a
-                        class="pub-title"
-                        href={`/publications/${entry.slug}/`}
-                        set:html={inlineMarkdown(entry.title)}
-                      />
-                    ) : (
-                      <span class="pub-title" set:html={inlineMarkdown(entry.title)} />
-                    )}
-                    <p class="pub-authors" set:html={highlightAuthor(entry.authors)} />
+                  {hasNotesPage(entry) ? (
+                    <a
+                      class="pub-title"
+                      href={`/publications/${entry.slug}/`}
+                      set:html={inlineMarkdown(entry.title)}
+                    />
+                  ) : (
+                    <span class="pub-title" set:html={inlineMarkdown(entry.title)} />
+                  )}
+                  <p class="pub-meta">
+                    <span class="pub-authors" set:html={highlightAuthor(entry.authors)} />
                     {entry.journal ? (
-                      <p class="pub-venue">
-                        <em>{entry.journal}</em>
-                        {entry.status && entry.category === "under-review" ? ` · ${entry.status}` : null}
-                      </p>
+                      <>
+                        {" · "}
+                        <em>{entry.journal}</em>{[
+                          group.key !== "in-preparation" ? entry.date : undefined,
+                          entry.category === "under-review" ? entry.status : undefined,
+                        ]
+                          .filter(Boolean)
+                          .map((part) => `, ${part}`)
+                          .join("")}
+                      </>
                     ) : null}
-                    <p class="pub-links">
+                    <span class="pub-links">
                       {entry.doi ? <a href={`https://doi.org/${entry.doi}`}>DOI</a> : null}
                       {hasNotesPage(entry) ? <a href={`/publications/${entry.slug}/`}>Notes</a> : null}
                       {entry.repositoryHref ? <a href={entry.repositoryHref}>Code</a> : null}
                       {!entry.doi && entry.href && entry.linkLabel ? (
                         <a href={entry.href}>{entry.linkLabel}</a>
                       ) : null}
-                    </p>
-                  </div>
+                    </span>
+                  </p>
                 </li>
               ))}
             </ol>
@@ -205,41 +176,66 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
 
     <!-- ───────── Projects ───────── -->
     <section id="projects" class="section shell" aria-labelledby="projects-title">
-      <SectionHeading id="projects-title" number="04" title="Projects & code" es="proyectos">
+      <SectionHeading id="projects-title" number="03" title="Projects & code" es="proyectos">
         <a class="section-aside link-arrow" href={profile.githubUrl}>
-          All repositories <Icon name="arrow" size={14} />
+          GitHub profile <Icon name="arrow" size={14} />
         </a>
       </SectionHeading>
       <div class="project-grid">
         {
-          projects.map((entry) => (
+          featuredProjects.map((entry) => (
             <article class="project-card">
-              <p class="meta">{entry.date}</p>
-              <h3>
-                {entry.href ? <a href={entry.href}>{entry.title}</a> : entry.title}
-              </h3>
-              <p>{entry.summary}</p>
-              {entry.tags?.length ? (
-                <ul class="tags">
-                  {entry.tags.map((tag) => (
-                    <li>{tag}</li>
-                  ))}
-                </ul>
-              ) : null}
-              {entry.href ? (
-                <span class="card-cta" aria-hidden="true">
-                  <Icon name="github" size={15} /> Repository
-                </span>
-              ) : null}
+              <p class="meta">
+                {entry.date}
+                {entry.subtitle ? ` · ${entry.subtitle}` : null}
+              </p>
+              <h3>{entry.title}</h3>
+              <p class="project-summary">{entry.summary}</p>
+              {entry.status ? <p class="project-status">{entry.status}</p> : null}
+              <p class="project-links">
+                {entry.href ? (
+                  <a href={entry.href}>
+                    <Icon name="github" size={14} /> Code
+                  </a>
+                ) : null}
+                {entry.demoHref ? (
+                  <a href={entry.demoHref}>
+                    Demo <Icon name="arrow" size={13} />
+                  </a>
+                ) : null}
+                {entry.secondaryHref ? (
+                  <a href={entry.secondaryHref}>
+                    {entry.secondaryLabel ?? "Link"} <Icon name="arrow" size={13} />
+                  </a>
+                ) : null}
+              </p>
             </article>
           ))
         }
       </div>
+      {
+        earlierProjects.length ? (
+          <div class="earlier">
+            <h3 class="interests-title">Earlier projects</h3>
+            <ul>
+              {earlierProjects.map((entry) => (
+                <li>
+                  <span class="meta">{entry.date}</span>
+                  <span>
+                    {entry.href ? <a href={entry.href}>{entry.title}</a> : <strong>{entry.title}</strong>}
+                    <span class="muted"> — {entry.summary}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null
+      }
     </section>
 
     <!-- ───────── Experience ───────── -->
     <section id="experience" class="section shell" aria-labelledby="experience-title">
-      <SectionHeading id="experience-title" number="05" title="Research experience" es="trayectoria" />
+      <SectionHeading id="experience-title" number="04" title="Research experience" es="trayectoria" />
       <ol class="timeline">
         {
           experience.map((entry) => (
@@ -263,7 +259,7 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
     <!-- ───────── Honors + talks ───────── -->
     <section class="section shell two-up" aria-label="Honors, talks and media">
       <div id="honors">
-        <SectionHeading id="honors-title" number="06" title="Honors & funding" es="premios" />
+        <SectionHeading id="honors-title" number="05" title="Honors & funding" es="premios" />
         <ul class="ledger">
           {
             honors.map((entry) => (
@@ -281,7 +277,7 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
         </ul>
       </div>
       <div id="talks">
-        <SectionHeading id="talks-title" number="07" title="Talks & posters" es="charlas" />
+        <SectionHeading id="talks-title" number="06" title="Talks & posters" es="presentaciones" />
         <ul class="ledger">
           {
             talks.map((entry) => (
@@ -305,9 +301,9 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
       </div>
     </section>
 
-    <!-- ───────── Teaching & service ───────── -->
+    <!-- ───────── Mentoring & service ───────── -->
     <section id="service" class="section shell" aria-labelledby="service-title">
-      <SectionHeading id="service-title" number="08" title="Mentoring & service" es="docencia y comunidad" />
+      <SectionHeading id="service-title" number="07" title="Mentoring & service" es="docencia y servicio" />
       <ul class="service-list">
         {
           service.map((entry) => (
@@ -325,40 +321,25 @@ const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Hello from
       </ul>
     </section>
 
-    <!-- ───────── Beyond the lab ───────── -->
-    <section id="beyond" class="section beyond" aria-labelledby="beyond-title">
-      <div class="shell">
-        <SectionHeading id="beyond-title" number="09" title="Beyond the lab" es="fuera del laboratorio" />
-        <div class="beyond-grid">
-          {
-            beyond.map((entry) => (
-              <article class="beyond-card">
-                <p class="meta">{entry.date}</p>
-                <h3>{entry.title}</h3>
-                <p>{entry.summary}</p>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
     <!-- ───────── Contact ───────── -->
     <section id="contact" class="section shell contact" aria-labelledby="contact-title">
-      <p class="contact-es" lang="es">Escríbeme</p>
-      <h2 id="contact-title">Let's talk.</h2>
-      <p class="contact-note">{profile.contactNote}</p>
-      <a class="contact-email" href={mailto}>{profile.email}</a>
-      <div class="contact-links">
-        <a class="icon-link" href={profile.githubUrl} aria-label="GitHub" title="GitHub">
-          <Icon name="github" size={19} />
-        </a>
-        <a class="icon-link" href={profile.linkedInUrl} aria-label="LinkedIn" title="LinkedIn">
-          <Icon name="linkedin" size={19} />
-        </a>
-        <a class="icon-link" href={profile.cvUrl} aria-label="Curriculum vitae (PDF)" title="CV">
-          <Icon name="file" size={19} />
-        </a>
+      <SectionHeading id="contact-title" number="08" title="Contact" es="contacto" />
+      <div class="contact-row">
+        <div>
+          <p class="contact-note">{profile.contactNote}</p>
+          <a class="contact-email" href={mailto}>{profile.email}</a>
+        </div>
+        <div class="contact-links">
+          <a class="icon-link" href={profile.githubUrl} aria-label="GitHub" title="GitHub">
+            <Icon name="github" size={19} />
+          </a>
+          <a class="icon-link" href={profile.linkedInUrl} aria-label="LinkedIn" title="LinkedIn">
+            <Icon name="linkedin" size={19} />
+          </a>
+          <a class="icon-link" href={profile.cvUrl} aria-label="Curriculum vitae (PDF)" title="CV">
+            <Icon name="file" size={19} />
+          </a>
+        </div>
       </div>
     </section>
   </main>

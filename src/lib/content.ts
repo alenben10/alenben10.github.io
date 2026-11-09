@@ -25,6 +25,9 @@ export type EntryFrontmatter = {
   kind?: string;
   doi?: string;
   linkLabel?: string;
+  demoHref?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
   category?: "under-review" | "peer-reviewed" | "proceedings" | "in-preparation";
   order?: number;
   tags?: string[];

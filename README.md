@@ -9,7 +9,7 @@ automatically on every push to `main`.
 
 | I want to change…                         | Edit this                                   |
 | ----------------------------------------- | ------------------------------------------- |
-| Intro, role, research interests, contact  | `src/lib/profile.ts`                        |
+| Intro, role, research-interest tags, contact | `src/lib/profile.ts`                      |
 | "About" paragraphs                        | `src/content/about/main.md`                 |
 | Education                                 | `src/content/education/*.md`                |
 | Research experience (timeline)            | `src/content/experience/*.md`               |
@@ -18,7 +18,6 @@ automatically on every push to `main`.
 | Honors & funding                          | `src/content/honors/*.md`                   |
 | Talks & posters                           | `src/content/talks/*.md`                    |
 | Mentoring & service                       | `src/content/service/*.md`                  |
-| Beyond the lab                            | `src/content/beyond/*.md`                   |
 | CV PDF                                    | replace `public/assets/Alen-Zimic-CV.pdf`   |
 | Photo                                     | replace `public/assets/alen-zimic-portrait.webp` |
 | Colors                                    | the few lines at the top of `src/styles/global.css` |
@@ -27,6 +26,10 @@ automatically on every push to `main`.
 
 Copy any `.md` file in the same folder, rename it, and change the text between the `---` lines.
 Lower `order` numbers appear first. Use `*asterisks*` in a title for italics (species names).
+
+Projects: the first project is shown as the wide featured card. Add `"earlier"` to a project's
+`tags` to list it under "Earlier projects" instead of as a card. Optional links: `href` (code),
+`demoHref`, and `secondaryHref` + `secondaryLabel`.
 
 ### Publication example
 

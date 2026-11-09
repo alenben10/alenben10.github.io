@@ -27,6 +27,9 @@ const portfolioSchema = z.object({
   kind: z.string().optional(),
   doi: z.string().optional(),
   linkLabel: z.string().optional(),
+  demoHref: z.string().url().optional(),
+  secondaryHref: z.string().url().optional(),
+  secondaryLabel: z.string().optional(),
   category: z.enum(["under-review", "peer-reviewed", "proceedings", "in-preparation"]).optional(),
   order: z.number().optional(),
   tags: z.array(z.string()).optional(),
@@ -34,7 +37,6 @@ const portfolioSchema = z.object({
 
 export const collections = {
   about: defineCollection({ type: "content", schema: portfolioSchema }),
-  beyond: defineCollection({ type: "content", schema: portfolioSchema }),
   education: defineCollection({ type: "content", schema: portfolioSchema }),
   experience: defineCollection({ type: "content", schema: portfolioSchema }),
   honors: defineCollection({ type: "content", schema: portfolioSchema }),
