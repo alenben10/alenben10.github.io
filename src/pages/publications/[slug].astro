@@ -1,100 +1,77 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import Icon from "../../components/Icon.astro";
 import profile from "../../lib/profile";
-import { collection } from "../../lib/content";
+import { collection, hasNotesPage, highlightAuthor, inlineMarkdown } from "../../lib/content";
 
 export function getStaticPaths() {
-  const visiblePublicationEntries = collection(
+  const entries = collection(
     import.meta.glob("../../content/publications/*.md", { eager: true }),
-  ).filter((entry) => entry.status !== "To be submitted");
-  const publicationLinks = visiblePublicationEntries.map((publication) => ({
-    slug: publication.slug,
-    title: publication.title,
-    journal: publication.journal,
-    date: publication.date,
-    status: publication.status,
-  }));
+  ).filter(hasNotesPage);
 
-  return visiblePublicationEntries.map((entry) => ({
+  return entries.map((entry) => ({
     params: { slug: entry.slug },
     props: {
       entry,
-      otherPublications: publicationLinks.filter(
-        (publication) => publication.slug !== entry.slug,
-      ),
+      others: entries
+        .filter((other) => other.slug !== entry.slug)
+        .map(({ slug, title, journal, date }) => ({ slug, title, journal, date })),
     },
   }));
 }
 
-const { entry, otherPublications: routeOtherPublications } = Astro.props;
-const publicationLinks = collection(
-  import.meta.glob("../../content/publications/*.md", { eager: true }),
-)
-  .filter((publication) => publication.status !== "To be submitted")
-  .map((publication) => ({
-    slug: publication.slug,
-    title: publication.title,
-    journal: publication.journal,
-    date: publication.date,
-    status: publication.status,
-  }));
-const otherPublications =
-  routeOtherPublications ??
-  publicationLinks.filter((publication) => publication.slug !== entry.slug);
+const { entry, others } = Astro.props;
 const EntryContent = entry.Component;
-const readTime = entry.readingTime ?? "2 min read";
-const noteDate = entry.dateWritten ?? entry.date;
-const hasFigure = entry.status === "Published" && Boolean(entry.figureImage);
-const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
+const doiUrl = entry.doi ? `https://doi.org/${entry.doi}` : undefined;
+const primaryHref = doiUrl ?? entry.href;
 ---
 
-<BaseLayout title={`${entry.tabLabel ?? entry.title} | ${profile.fullName}`} description={entry.summary ?? profile.researchFocus}>
+<BaseLayout
+  title={`${entry.tabLabel ?? entry.title.replaceAll("*", "")} · ${profile.fullName}`}
+  description={entry.summary ?? profile.seoDescription}
+>
   <SiteHeader variant="detail" />
 
-  <main id="main-content" class="detail-page">
-    <section class="section-shell paper-detail-hero">
-      <div class="detail-copy">
-        <p class="section-kicker">Paper notes</p>
-        <h1>{entry.title}</h1>
-        {entry.authors ? <p class="detail-authors">{entry.authors}</p> : null}
-        <div class="paper-note-meta" role="group" aria-label="Paper note metadata">
-          <span>
-            <strong>Time to read</strong>
-            {readTime}
-          </span>
-          <span>
-            <strong>{entry.status === "Published" ? "Publication year" : "Year"}</strong>
-            {entry.date}
-          </span>
-          <span>
-            <strong>Status</strong>
-            {entry.status}
-          </span>
-          <span>
-            <strong>Notes written</strong>
-            {noteDate}
-          </span>
-        </div>
-        {entry.summary ? <p class="intro detail-intro">{entry.summary}</p> : null}
-        <div class="hero-actions">
-          {entry.href ? (
-            <a class="button button-primary" href={entry.href}>
-              {entry.status === "Published" ? "View published paper" : "Visit journal website"}
-            </a>
-          ) : null}
-          {entry.repositoryHref ? <a class="button button-secondary" href={entry.repositoryHref}>Companion repository</a> : null}
-        </div>
-      </div>
-    </section>
+  <main id="main-content" class="detail shell">
+    <a class="back-link" href="/#publications"><Icon name="back" size={15} /> All publications</a>
 
-    <section class="section-shell detail-grid" aria-labelledby="paper-summary-title">
-      <article class="detail-prose">
-        <p class="section-kicker">Paper overview</p>
-        <h2 id="paper-summary-title">Research notes</h2>
+    <header class="detail-header">
+      <p class="detail-kicker">
+        {entry.category === "under-review" ? "Manuscript in review" : "Paper notes"}
+        <span lang="es"> · notas</span>
+      </p>
+      <h1 set:html={inlineMarkdown(entry.title)} />
+      <p class="pub-authors" set:html={highlightAuthor(entry.authors)} />
+      <p class="detail-venue">
+        <em>{entry.journal}</em>{entry.date ? ` · ${entry.date}` : null}
+        {entry.status && entry.status !== "Published" ? ` · ${entry.status}` : null}
+      </p>
+      {entry.summary ? <p class="detail-summary">{entry.summary}</p> : null}
+      <div class="hero-actions">
         {
-          hasFigure ? (
-            <figure class="paper-note-figure">
+          primaryHref && entry.category !== "under-review" ? (
+            <a class="button button-primary" href={primaryHref}>
+              Read the paper <Icon name="arrow" size={15} />
+            </a>
+          ) : null
+        }
+        {
+          entry.repositoryHref ? (
+            <a class="button button-ghost" href={entry.repositoryHref}>
+              <Icon name="github" size={16} /> Companion repository
+            </a>
+          ) : null
+        }
+      </div>
+    </header>
+
+    <div class="detail-grid">
+      <article class="prose detail-prose">
+        {
+          entry.figureImage ? (
+            <figure class="detail-figure">
               <img
                 src={entry.figureImage}
                 alt={entry.figureAlt ?? entry.title}
@@ -103,10 +80,15 @@ const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
                 loading="lazy"
                 decoding="async"
               />
-              {(entry.figureCaption || entry.figureSource) ? (
+              {entry.figureCaption || entry.figureSource ? (
                 <figcaption>
-                  {entry.figureCaption ? <span>{entry.figureCaption}</span> : null}
-                  {entry.figureSource ? <a href={entry.figureSource}>Figure source</a> : null}
+                  {entry.figureCaption}
+                  {entry.figureSource ? (
+                    <>
+                      {" "}
+                      <a href={entry.figureSource}>Source</a>
+                    </>
+                  ) : null}
                 </figcaption>
               ) : null}
             </figure>
@@ -114,55 +96,42 @@ const paperTags = entry.tags ?? [entry.tabLabel, entry.visual].filter(Boolean);
         }
         <EntryContent />
       </article>
-      <aside class="detail-aside" aria-label="Publication metadata">
-        <div>
-          <p class="card-meta">Notes written</p>
-          <strong>{noteDate}</strong>
-        </div>
-        <div>
-          <p class="card-meta">Status</p>
-          <strong>{entry.status}</strong>
-        </div>
-        <div>
-          <p class="card-meta">Journal</p>
-          <strong>{entry.journal}</strong>
-        </div>
+
+      <aside class="detail-aside" aria-label="Publication details">
+        <dl class="facts">
+          {entry.journal ? <div><dt>Venue</dt><dd>{entry.journal}</dd></div> : null}
+          {entry.date ? <div><dt>Year</dt><dd>{entry.date}</dd></div> : null}
+          {entry.doi ? <div><dt>DOI</dt><dd><a href={doiUrl}>{entry.doi}</a></dd></div> : null}
+          {entry.dateWritten ? <div><dt>Notes written</dt><dd>{entry.dateWritten}</dd></div> : null}
+        </dl>
         {
-          paperTags.length ? (
-            <div class="paper-topic-box">
-              <p class="card-meta">Topics</p>
-              <ul class="formal-tag-list">
-                {paperTags.map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null
-        }
-        {
-          hasFigure && entry.figureSource ? (
-            <a class="card-link" href={entry.figureSource}>Open figure source</a>
+          entry.tags?.length ? (
+            <ul class="tags">
+              {entry.tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
           ) : null
         }
       </aside>
-    </section>
+    </div>
 
-    <section class="section-shell paper-next" aria-labelledby="more-papers-title">
-      <div class="paper-next-heading">
-        <p class="section-kicker">More papers</p>
-        <h2 id="more-papers-title">Read another paper note</h2>
-      </div>
-      <div class="paper-next-grid">
+    <nav class="more-papers" aria-labelledby="more-title">
+      <h2 id="more-title">More papers <span lang="es">más publicaciones</span></h2>
+      <ul>
         {
-          otherPublications.map((publication) => (
-            <a class="paper-next-card" href={`/publications/${publication.slug}/`}>
-              <span class="card-meta">{publication.date} / {publication.status}</span>
-              <strong>{publication.title}</strong>
-              <span>{publication.journal}</span>
-            </a>
+          others.map((other) => (
+            <li>
+              <a href={`/publications/${other.slug}/`}>
+                <span class="meta">{other.date} · {other.journal}</span>
+                <strong set:html={inlineMarkdown(other.title)} />
+              </a>
+            </li>
           ))
         }
-      </div>
-    </section>
+      </ul>
+    </nav>
   </main>
+
+  <SiteFooter />
 </BaseLayout>

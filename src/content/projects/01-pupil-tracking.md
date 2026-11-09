@@ -1,8 +1,8 @@
 ---
 title: "Eye Movement Feature Tracking"
 subtitle: "Computer vision for saccadic eye movement analysis"
-date: "Jun 2024"
-order: 2
+date: "2024"
+order: 4
 href: "https://github.com/alenzimic/PupilTrackingDiagnosis"
 summary: "A small computer-vision workflow for tracking eye movement responses from video and extracting interpretable motion features."
 tags: ["Computer Vision", "Python", "Biomedical Signals"]

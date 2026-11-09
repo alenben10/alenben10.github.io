@@ -1,9 +1,9 @@
 ---
-title: "Enrichment of root-associated Streptomyces strains in response to drought is driven by diverse functional traits and does not predict beneficial effects on plant growth"
+title: "Enrichment of root-associated *Streptomyces* strains in response to drought is driven by diverse functional traits and does not predict beneficial effects on plant growth"
 tabLabel: "Streptomyces"
 date: "2025"
 status: "Published"
-order: 1
+order: 3
 authors: "Fonseca-Garcia C., Pettinga D., Caddell D., Ploemacher H., Louie K., Bowen B. P., Park J., Sanchez J., A. Zimic-Sheen, et al."
 journal: "PLOS Biology"
 href: "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3003526"
@@ -18,6 +18,8 @@ figureCaption: "Main figure from the PLOS Biology article, summarizing the field
 figureSource: "https://journals.plos.org/plosbiology/article/figure?id=10.1371/journal.pbio.3003526.g001"
 visual: "roots"
 tags: ["Plant-microbe interactions", "Drought response", "Streptomyces", "Genomics"]
+category: "peer-reviewed"
+doi: "10.1371/journal.pbio.3003526"
 ---
 
 ## Summary

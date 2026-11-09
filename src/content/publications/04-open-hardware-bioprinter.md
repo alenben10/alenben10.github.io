@@ -3,15 +3,17 @@ title: "An Open Hardware Bioprinter Part I: A bioextruder with a peristaltic pum
 tabLabel: "Bioprinter"
 date: "2023"
 status: "Published"
-order: 4
+order: 7
 authors: "Latorre-Quevedo P. G., Romero-Rodriguez O. A., Ramos-Gallegos M. L., Bravo-Bravo A. E., A. Zimic-Sheen, et al."
-journal: "IEEE Xplore"
-href: "https://ieeexplore.ieee.org/document/10326095"
+journal: "IEEE INTERCON 2023"
+href: "https://doi.org/10.1109/INTERCON59652.2023.10326095"
 summary: "An open-hardware bioextrusion design built around a peristaltic pump architecture for accessible bioprinting."
 dateWritten: "April 25, 2026"
 readingTime: "2 min read"
 visual: "hardware"
 tags: ["Open hardware", "Bioprinting", "Bioextrusion"]
+category: "proceedings"
+doi: "10.1109/INTERCON59652.2023.10326095"
 ---
 
 ## Summary

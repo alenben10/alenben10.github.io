@@ -1,9 +1,9 @@
 ---
 title: "Rapid and cost-effective fabrication of microfluidic chips with resin 3D printing"
 tabLabel: "Microfluidics"
-date: "2026"
+date: "2025"
 status: "Published"
-order: 2
+order: 4
 authors: "Latorre-Quevedo P. G., Cardenas-Infantes B. A., Chancan-Aviles D., A. Zimic-Sheen, Jamanca-Abalos K. A., et al."
 journal: "Progress in Additive Manufacturing"
 href: "https://link.springer.com/article/10.1007/s40964-025-01391-z"
@@ -12,6 +12,8 @@ dateWritten: "April 25, 2026"
 readingTime: "2 min read"
 visual: "microfluidics"
 tags: ["Microfluidics", "Resin 3D printing", "PDMS prototyping"]
+category: "peer-reviewed"
+doi: "10.1007/s40964-025-01391-z"
 ---
 
 ## Summary

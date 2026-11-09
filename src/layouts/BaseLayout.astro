@@ -26,37 +26,30 @@ const structuredData = {
       url: profile.siteUrl,
       image: portraitUrl,
       email: `mailto:${profile.email}`,
-      jobTitle: "Laboratory Technician",
+      jobTitle: profile.role,
       sameAs: [profile.githubUrl, profile.linkedInUrl],
-      affiliation: [
-        {
-          "@type": "CollegeOrUniversity",
-          name: "Cornell University",
-        },
-        {
-          "@type": "Organization",
-          name: "Moghe Lab",
-        },
-      ],
+      affiliation: { "@type": "CollegeOrUniversity", name: profile.institution },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Universidad Peruana Cayetano Heredia" },
+      nationality: { "@type": "Country", name: "Peru" },
+      knowsLanguage: ["es", "en"],
       knowsAbout: [
         "Computational biology",
         "Bioinformatics",
-        "Biological data science",
         "Machine learning",
-        "Omics data analysis",
-        "Plant-microbe interactions",
-        "Environmental biotechnology",
+        "Protein language models",
+        "Large language models",
+        "Knowledge graphs",
+        "Genomics",
+        "Metagenomics",
       ],
     },
     {
       "@type": "WebSite",
       "@id": `${profile.siteUrl}/#website`,
-      name: `${profile.fullName} portfolio`,
+      name: profile.fullName,
       alternateName: profile.alternateNames,
       url: profile.siteUrl,
-      author: {
-        "@id": `${profile.siteUrl}/#person`,
-      },
+      author: { "@id": `${profile.siteUrl}/#person` },
       inLanguage: "en",
     },
   ],
@@ -67,19 +60,19 @@ const structuredData = {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={profile.fullName} />
     <meta
       name="keywords"
-      content={`${nameKeywords}, computational biology, bioinformatics, biological data science, Cornell University`}
+      content={`${nameKeywords}, computational biology, bioinformatics, machine learning, Cornell University, Peru`}
     />
     <meta name="robots" content="index, follow" />
-    <meta
-      name="google-site-verification"
-      content="SG10dQM62fAg4iT5IRWIfZ_8J4eu1l--00fpeox_0xk"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080b10" />
+    <meta name="google-site-verification" content="SG10dQM62fAg4iT5IRWIfZ_8J4eu1l--00fpeox_0xk" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fbf7f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#171311" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -88,22 +81,20 @@ const structuredData = {
     <meta property="og:image" content={socialImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${profile.fullName} — computational biology and bioinformatics.`} />
-    <meta property="og:site_name" content={`${profile.fullName} portfolio`} />
+    <meta property="og:image:alt" content={`${profile.fullName} — ${profile.role}, ${profile.institution}`} />
+    <meta property="og:site_name" content={profile.fullName} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
-    <meta name="twitter:image:alt" content={`${profile.fullName} — computational biology and bioinformatics.`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <slot />

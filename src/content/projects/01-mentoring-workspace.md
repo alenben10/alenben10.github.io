@@ -1,8 +1,8 @@
 ---
 title: "Mentoring Workspace"
 subtitle: "Mentor-mentee collaboration tracker"
-date: "Apr 2026"
-order: 1
+date: "2026"
+order: 3
 href: "https://github.com/alenzimic/mentoring-workspace"
 summary: "Built for REU mentoring, this shared workspace helps mentor-mentee teams track notes, tasks, deadlines, and Google Docs/Sheets sync."
 tags: ["Mentoring", "Research Training", "Google Apps Script"]

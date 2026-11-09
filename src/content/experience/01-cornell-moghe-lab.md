@@ -1,10 +1,10 @@
 ---
 title: "Laboratory Technician"
-subtitle: "Plant Science Department, Cornell University - PI: Gaurav Moghe, PhD"
-date: "Aug 2025 - Current"
+subtitle: "Moghe Lab, Cornell University"
+venue: "Ithaca, NY"
+pi: "Gaurav Moghe, PhD"
+date: "Aug 2025 – Aug 2026"
 order: 1
-summary: "Building computational workflows in the Moghe Lab as part of the C-SPIRIT research team, connecting uncharacterized plant metabolites with genes, tissues, species, and stress-related traits."
-tags: ["LLMs", "Plant Metabolites", "Graph Neural Networks", "Python"]
+summary: "Built Python and local-LLM workflows that extract validated metabolite–gene–trait relations from full-text articles, with sentence-level provenance and experimental context, as a knowledge resource for graph-based deep learning."
+tags: ["Local LLMs", "Knowledge graphs", "Python"]
 ---
-
-I build Python and LLM-assisted pipelines that turn scattered plant metabolism literature into structured relationships. The goal is to support graph-based discovery of plant molecules and genes that may matter for stress resilience.

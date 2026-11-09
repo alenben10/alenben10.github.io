@@ -1,8 +1,8 @@
 ---
 title: "ESM3 Transfer Learning for Enzyme–Substrate Prediction"
 subtitle: "Protein foundation-model representations for substrate-class prediction"
-date: "May 2026"
-order: -1
+date: "2026"
+order: 1
 href: "https://github.com/alenzimic/Transfer-Learning-of-ESM3-for-Enzyme-Substrate-Prediction"
 summary: "A Cornell deep-learning course project using frozen ESM3 representations and downstream classifiers to study enzyme substrate classes and residue-level signals."
 tags: ["ESM3", "Protein Language Models", "Transfer Learning", "Interpretability"]

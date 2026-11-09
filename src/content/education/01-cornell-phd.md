@@ -1,9 +1,7 @@
 ---
 title: "PhD in Computational Biology"
-subtitle: "Cornell University"
-date: "Beginning August 2026"
+subtitle: "Cornell University, Ithaca, NY"
+date: "2026 – present"
 order: 1
-tags: ["Computational Biology", "SUNY Fellowship"]
+summary: "SUNY Distinguished Fellowship · Dean Scholar"
 ---
-
-Incoming PhD student in Computational Biology at Cornell University, funded by the SUNY Fellowship.

@@ -1,71 +1,57 @@
-# Alen Zimic Portfolio
+# alenzimic.github.io
 
-Personal GitHub Pages site for `https://alenzimic.github.io`, built with Astro.
+Personal academic site, built with [Astro](https://astro.build) and deployed to GitHub Pages
+automatically on every push to `main`.
 
-## Edit Content
+**You never need to touch HTML or CSS to update it.** Almost everything is plain text.
 
-Most website text lives in Markdown files under `src/content`.
+## Where things live
 
-- `src/content/about/main.md` edits the homepage bio.
-- `src/content/experience/*.md` edits research experience cards.
-- `src/content/publications/*.md` edits publication cards.
-- `src/content/projects/*.md` edits project cards.
-- `src/content/funding-awards/*.md` edits funding and awards.
-- `src/content/talks/*.md` edits talks and media.
-- `src/content/notes/*.md` edits blog-style notes.
+| I want to change…                         | Edit this                                   |
+| ----------------------------------------- | ------------------------------------------- |
+| Intro, role, research interests, contact  | `src/lib/profile.ts`                        |
+| "About" paragraphs                        | `src/content/about/main.md`                 |
+| Education                                 | `src/content/education/*.md`                |
+| Research experience (timeline)            | `src/content/experience/*.md`               |
+| Publications                              | `src/content/publications/*.md`             |
+| Projects & code                           | `src/content/projects/*.md`                 |
+| Honors & funding                          | `src/content/honors/*.md`                   |
+| Talks & posters                           | `src/content/talks/*.md`                    |
+| Mentoring & service                       | `src/content/service/*.md`                  |
+| Beyond the lab                            | `src/content/beyond/*.md`                   |
+| CV PDF                                    | replace `public/assets/Alen-Zimic-CV.pdf`   |
+| Photo                                     | replace `public/assets/alen-zimic-portrait.webp` |
+| Colors                                    | the few lines at the top of `src/styles/global.css` |
 
-Publication entries with `status: "To be submitted"` stay in the content folder but are not shown on the homepage. Visible publication entries automatically get detail pages at `/publications/file-name/`.
+## Adding an item
 
-Notes automatically get detail pages at `/notes/file-name/`.
+Copy any `.md` file in the same folder, rename it, and change the text between the `---` lines.
+Lower `order` numbers appear first. Use `*asterisks*` in a title for italics (species names).
 
-Each Markdown file has a small front matter block at the top:
+### Publication example
 
 ```md
 ---
-title: "Card title"
-subtitle: "Optional subtitle"
-date: "Date shown on the site"
-order: 10
-href: "https://official-link.example"
-summary: "Short summary used on compact cards"
-tags: ["Keyword", "Keyword"]
+title: "My new paper about *Escherichia coli*"
+authors: "Doe J., A. Zimic-Sheen, et al."
+journal: "Bioinformatics"
+date: "2027"
+category: "peer-reviewed"   # under-review | peer-reviewed | proceedings | in-preparation
+doi: "10.1093/bioinformatics/xxxx"
+order: 1
+summary: "One sentence shown on the notes page."
 ---
 
-Write the visible body text here.
+Optional notes about the paper (Markdown). Every publication that is not
+"in-preparation" automatically gets a page at /publications/<file-name>/.
 ```
 
-Lower `order` values appear first.
+Your name is bolded automatically in author lists.
 
-Publication files can also use:
-
-```md
-authors: "Author list"
-journal: "Journal or venue"
-repositoryHref: "https://github.com/example/repo"
-dateWritten: "April 25, 2026"
-readingTime: "2 min read"
-visual: "roots"
-```
-
-## Edit Profile Links
-
-Update name, email, GitHub, LinkedIn, and CV path in:
-
-```text
-src/lib/profile.ts
-```
-
-## Run Locally
+## Run locally (optional)
 
 ```bash
 npm install
-npm run dev
+npm run dev     # http://localhost:4321
+npm run build   # what GitHub Actions runs
 ```
-
-## Build
-
-```bash
-npm run build
-```
-
-The GitHub Pages workflow in `.github/workflows/deploy.yml` deploys the site after pushing to `main`.

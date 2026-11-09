@@ -1,0 +1,16 @@
+---
+import profile from "../lib/profile";
+import AndeanBand from "./AndeanBand.astro";
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <AndeanBand id="band-footer" />
+  <div class="shell footer-inner">
+    <p>
+      © {year} {profile.fullName} ·
+      <span lang="es">Hecho con cariño en Ithaca, con raíces en Lima.</span>
+    </p>
+    <p class="footer-note">Colors borrowed from cochineal red, Andean gold, and indigo.</p>
+  </div>
+</footer>

@@ -1,10 +1,10 @@
 ---
 title: "Research Assistant"
-subtitle: "Bioinformatics and Molecular Biology Laboratory, UPCH - PIs: Mirko Zimic, PhD and Patricia Sheen, PhD"
-date: "Jun 2021 - Jan 2025"
+subtitle: "Bioinformatics and Molecular Biology Laboratory, UPCH"
+venue: "Lima, Peru"
+pi: "Mirko Zimic, PhD & Patricia Sheen, PhD"
+date: "Jun 2021 – Jan 2025"
 order: 3
-summary: "Worked across pathogen bioinformatics, antigen modeling, metagenomics, and molecular biology platforms in a lab spanning health and environmental applications."
-tags: ["Immunoinformatics", "Protein Modeling", "Metagenomics", "Taenia solium"]
+summary: "Immunoinformatics and antigen modeling for neurocysticercosis diagnostics, adhesin-protein discovery in the Taenia solium genome, Lake Titicaca metagenomics, and protein modeling for a bacterial surface-display platform."
+tags: ["Immunoinformatics", "Protein modeling", "Metagenomics"]
 ---
-
-I worked on projects that connected sequence analysis, protein prediction, immunoinformatics, and metagenomics. The work ranged from Taenia solium antigen and adhesin-like protein analysis to microbial diversity studies and molecular biology platforms.

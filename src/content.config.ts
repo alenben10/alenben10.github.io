@@ -23,19 +23,24 @@ const portfolioSchema = z.object({
   figureSource: z.string().url().optional(),
   visual: z.string().optional(),
   venue: z.string().optional(),
+  pi: z.string().optional(),
+  kind: z.string().optional(),
+  doi: z.string().optional(),
+  linkLabel: z.string().optional(),
+  category: z.enum(["under-review", "peer-reviewed", "proceedings", "in-preparation"]).optional(),
   order: z.number().optional(),
   tags: z.array(z.string()).optional(),
 });
 
 export const collections = {
   about: defineCollection({ type: "content", schema: portfolioSchema }),
-  affiliations: defineCollection({ type: "content", schema: portfolioSchema }),
+  beyond: defineCollection({ type: "content", schema: portfolioSchema }),
   education: defineCollection({ type: "content", schema: portfolioSchema }),
   experience: defineCollection({ type: "content", schema: portfolioSchema }),
-  "funding-awards": defineCollection({ type: "content", schema: portfolioSchema }),
-  leadership: defineCollection({ type: "content", schema: portfolioSchema }),
+  honors: defineCollection({ type: "content", schema: portfolioSchema }),
   notes: defineCollection({ type: "content", schema: portfolioSchema }),
   projects: defineCollection({ type: "content", schema: portfolioSchema }),
   publications: defineCollection({ type: "content", schema: portfolioSchema }),
+  service: defineCollection({ type: "content", schema: portfolioSchema }),
   talks: defineCollection({ type: "content", schema: portfolioSchema }),
 };

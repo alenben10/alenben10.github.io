@@ -1,8 +1,8 @@
 ---
-title: "Prediction and evaluation of adhesin-like proteins in Taenia solium"
-date: "Planned for 2026"
-status: "To be submitted"
-order: 12
+title: "Prediction and evaluation of adhesin-like proteins in the genome and transcriptome of *Taenia solium*"
+authors: "Landa M., Balta B., A. Zimic-Sheen, et al."
+date: "In preparation"
+status: "In preparation"
+category: "in-preparation"
+order: 22
 ---
-
-Mishell Landa, Belen Balta, A. Zimic-Sheen, et al. Analysis of adhesin-like proteins in the genome and transcriptome of Taenia solium.

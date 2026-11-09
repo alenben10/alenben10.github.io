@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import Icon from "../../components/Icon.astro";
 import profile from "../../lib/profile";
 import { collection } from "../../lib/content";
 
@@ -19,38 +21,20 @@ const { entry } = Astro.props;
 const EntryContent = entry.Component;
 ---
 
-<BaseLayout title={`${entry.title} | ${profile.fullName}`} description={entry.summary ?? profile.researchFocus}>
+<BaseLayout title={`${entry.title} · ${profile.fullName}`} description={entry.summary ?? profile.seoDescription}>
   <SiteHeader variant="detail" />
 
-  <main id="main-content" class="detail-page note-detail">
-    <section class="section-shell note-hero">
-      <p class="section-kicker">{entry.date}</p>
+  <main id="main-content" class="detail shell note">
+    <a class="back-link" href="/"><Icon name="back" size={15} /> Home</a>
+    <header class="detail-header">
+      <p class="detail-kicker">{entry.dateWritten ?? entry.date}</p>
       <h1>{entry.title}</h1>
-      {entry.summary ? <p class="intro detail-intro">{entry.summary}</p> : null}
-    </section>
-
-    <section class="section-shell detail-grid" aria-labelledby="note-title">
-      <article class="detail-prose">
-        <p class="section-kicker">Note</p>
-        <h2 id="note-title">Entry</h2>
-        <EntryContent />
-      </article>
-      <aside class="detail-aside" aria-label="Note metadata">
-        <div>
-          <p class="card-meta">Written</p>
-          <strong>{entry.dateWritten ?? entry.date}</strong>
-        </div>
-        {entry.tags?.length ? (
-          <div>
-            <p class="card-meta">Tags</p>
-            <ul class="tag-list">
-              {entry.tags.map((tag) => (
-                <li>{tag}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-      </aside>
-    </section>
+      {entry.summary ? <p class="detail-summary">{entry.summary}</p> : null}
+    </header>
+    <article class="prose detail-prose">
+      <EntryContent />
+    </article>
   </main>
+
+  <SiteFooter />
 </BaseLayout>

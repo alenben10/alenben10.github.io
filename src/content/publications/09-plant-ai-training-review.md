@@ -1,10 +1,9 @@
 ---
-title: "Reimagining plant science training in the era of generative artificial intelligence: a global perspective"
+title: "Reimagining plant science training in the era of generative AI: a global perspective"
 tabLabel: "Plant AI training"
 date: "2026"
 status: "Published"
-publicationType: "review"
-order: 6
+order: 2
 authors: "Moghe G. D., A. Zimić-Sheen, et al."
 journal: "The Plant Cell"
 href: "https://academic.oup.com/plcell/article/38/6/koag140/8676660"
@@ -14,6 +13,8 @@ dateWritten: "July 10, 2026"
 readingTime: "3 min read"
 visual: "ai-training"
 tags: ["Plant science training", "Generative AI", "Tool repository"]
+category: "peer-reviewed"
+doi: "10.1093/plcell/koag140"
 ---
 
 ## Summary

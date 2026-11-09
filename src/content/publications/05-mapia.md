@@ -3,7 +3,7 @@ title: "Multiantigen print immunoassay (MAPIA) for the diagnosis of neurocystice
 tabLabel: "MAPIA"
 date: "2023"
 status: "Published"
-order: 5
+order: 6
 authors: "Toribio L., Guzman C., Noazin S., A. Zimic-Sheen, et al."
 journal: "Journal of Clinical Microbiology"
 href: "https://journals.asm.org/doi/10.1128/jcm.00760-23"
@@ -12,6 +12,8 @@ dateWritten: "April 25, 2026"
 readingTime: "3 min read"
 visual: "diagnostics"
 tags: ["Diagnostics", "Neurocysticercosis", "Immunoassay"]
+category: "peer-reviewed"
+doi: "10.1128/jcm.00760-23"
 ---
 
 ## Summary

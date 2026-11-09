@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Leaf monogram">
-  <rect width="64" height="64" rx="14" fill="#f8f4ec"/>
-  <path d="M20 43c0-15 8-26 24-30 2 16-5 27-21 32" fill="none" stroke="#2f6043" stroke-width="4" stroke-linecap="round"/>
-  <path d="M22 43c6-7 13-13 22-20" fill="none" stroke="#2f6043" stroke-width="3" stroke-linecap="round"/>
-  <path d="M21 43c8 0 14 2 20 8" fill="none" stroke="#2f6043" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#9e2a2b"/>
+  <polygon fill="#fbf7f0" points="26,14 38,14 38,20 44,20 44,26 50,26 50,38 44,38 44,44 38,44 38,50 26,50 26,44 20,44 20,38 14,38 14,26 20,26 20,20 26,20"/>
+  <rect x="27" y="27" width="10" height="10" fill="#c7892b"/>
 </svg>

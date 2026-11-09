@@ -1,8 +1,8 @@
 ---
 title: "Sketch Feature Classifier"
 subtitle: "Sketch feature classification with deep learning embeddings"
-date: "Apr–Jun 2024"
-order: 3
+date: "2024"
+order: 5
 href: "https://github.com/alenzimic/AutismSketchClassifier"
 summary: "A machine-learning experiment using learned image embeddings to classify sketch-derived visual features."
 tags: ["ResNet", "KNN", "Machine Learning"]

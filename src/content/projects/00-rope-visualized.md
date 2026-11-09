@@ -1,8 +1,8 @@
 ---
 title: "RoPE Visualized"
 subtitle: "Interactive rotary embeddings teaching demo"
-date: "Apr 2026"
-order: 0
+date: "2026"
+order: 2
 href: "https://github.com/alenzimic/rotary-embeddings-demo"
 summary: "A static, dependency-free visual demo for teaching rotary positional embeddings, including real RoPE formulas and cosine-similarity comparisons."
 tags: ["Transformers", "LLMs", "Visualization"]

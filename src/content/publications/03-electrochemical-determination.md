@@ -3,7 +3,7 @@ title: "A simple and low-cost electrode based on Nafion-stabilized silver nanopa
 tabLabel: "Electrochemical sensor"
 date: "2025"
 status: "Published"
-order: 3
+order: 5
 authors: "Monroy-Cruz L. J., A. Zimic-Sheen, et al."
 journal: "PLOS ONE"
 href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0320227"
@@ -18,6 +18,8 @@ figureCaption: "Main figure from the PLOS ONE article, showing the electrode pre
 figureSource: "https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0320227.g001"
 visual: "sensor"
 tags: ["Electrochemical sensing", "Silver nanoparticles", "Heavy metals"]
+category: "peer-reviewed"
+doi: "10.1371/journal.pone.0320227"
 ---
 
 ## Summary

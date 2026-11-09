@@ -1,5 +1,5 @@
 import profile from "../lib/profile";
-import { collection } from "../lib/content";
+import { collection, hasNotesPage } from "../lib/content";
 
 export const prerender = true;
 
@@ -14,7 +14,7 @@ const escapeXml = (value: string) =>
 export async function GET() {
   const publications = collection(
     import.meta.glob("../content/publications/*.md", { eager: true }),
-  ).filter((entry) => entry.status !== "To be submitted");
+  ).filter(hasNotesPage);
   const notes = collection(
     import.meta.glob("../content/notes/*.md", { eager: true }),
   ).filter((entry) => !entry.draft);
