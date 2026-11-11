@@ -7,7 +7,7 @@ const profile = {
   name: "Alen Zimic-Sheen",
   fullName: "Alen Zimic-Sheen",
   alternateNames: ["Alen Zimic", "Alen Zimic Sheen"],
-  siteUrl: "https://alenzimic.github.io",
+  siteUrl: "https://alenben10.github.io",
 
   // Shown under your name at the top of the page.
   role: "PhD Student in Computational Biology",
@@ -33,8 +33,8 @@ const profile = {
 
   email: "amz63@cornell.edu",
   location: "Ithaca, NY",
-  githubUsername: "alenzimic",
-  githubUrl: "https://github.com/alenzimic",
+  githubUsername: "alenben10",
+  githubUrl: "https://github.com/alenben10",
   linkedInUrl: "https://linkedin.com/in/alen-zimic-sheen",
   cvUrl: "/assets/Alen-Zimic-CV.pdf",
   portraitImage: "/assets/alen-zimic-portrait.webp",

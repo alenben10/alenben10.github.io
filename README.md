@@ -1,4 +1,4 @@
-# alenzimic.github.io
+# alenben10.github.io
 
 Personal academic site, built with [Astro](https://astro.build) and deployed to GitHub Pages
 automatically on every push to `main`.
